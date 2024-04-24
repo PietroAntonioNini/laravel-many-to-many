@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreProjectRequest;
 use App\Http\Requests\UpdateProjectRequest;
 use App\Models\Project;
+use App\Models\Technology;
 use App\Models\Type;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,10 @@ class ProjectController extends Controller
         //prendo tutti i tipi dal db
         $types = Type::all();
 
-        return view('admin.projects.create',compact('types'));
+        //prendo tutte le categorie dal db
+        $technologies = Technology::all();
+
+        return view('admin.projects.create',compact('types', 'technologies'));
     }
 
     /**
@@ -62,6 +66,8 @@ class ProjectController extends Controller
 
         $newProject->save();
 
+        //inserisco le tecnologie nel db (relazioni many-to-many dopo il save)
+        $newProject->technologies()->attach($request->technologies);
 
         //Reindirizziamo alla pagina dei Progetti
         return redirect()->route('admin.index', $newProject->id);
@@ -80,9 +86,16 @@ class ProjectController extends Controller
      */
     public function edit(Project $project)
     {
+        //prendo tutti i tipi dal db
         $types = Type::all();
 
-        return view('admin.projects.edit', compact('project', 'types'));
+        //prendo tutte le categorie dal db
+        $technologies = Technology::all();
+
+        // Indica se si sta visualizzando la pagina di modifica
+        $editing = true;
+
+        return view('admin.projects.edit', compact('project', 'types', 'technologies', 'editing'));
     }
 
     /**
@@ -102,6 +115,9 @@ class ProjectController extends Controller
         }
 
         $project->update($validatedData);
+
+        // Aggiorna le relazioni many-to-many
+        $project->technologies()->sync($request->technologies);
         
         return redirect()->route('admin.index', $project->id);
     }
