@@ -33,11 +33,6 @@
 
         </div>
         <div class="form-group mb-3">
-            <label for="technologies_used">Linguaggi usati:</label>
-            <input type="text" class="form-control @error('technologies_used') is-invalid  @enderror" id="technologies_used" name="technologies_used" value="{{old('technologies_used') ?? $project->technologies_used}}">
-            @error('technologies_used') <span class="text-danger">{{$message}}</span> @enderror
-        </div>
-        <div class="form-group mb-3">
             <label for="type_id">Tipologia:</label>
             <select class="form-select" name="type_id" id="type_id">
             

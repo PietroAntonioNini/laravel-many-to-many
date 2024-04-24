@@ -33,7 +33,6 @@ class StoreProjectRequest extends FormRequest
             ],
             'description' => 'required',
             'cover_image' => 'nullable|file|max:2048|mimes:jpg,bmp,png',
-            'technologies_used' => 'required|max:50',
             'github_link' => 'required',
             'type_id' => 'nullable|exists:types,id'
         ];
@@ -45,11 +44,9 @@ class StoreProjectRequest extends FormRequest
             'name.unique' => 'Esiste già un progetto con questo Nome',
             'name.required' => 'Inserisci un Titolo',
             'description.required' => 'Inserisci una Descrizione',
-            'technologies_used.required' => 'Inserisci almeno un linguaggio di programmazione usato',
             'github_link.required' => 'Inserisci il link alla repo di GitHub',
 
             'name.max' => 'Il campo Titolo deve avere massimo :max caratteri',
-            'technologies_used.max' => 'Il campo linguaggi usati deve avere massimo :max caratteri',
             'cover_image.max' => "L'immagine deve essere grande al massimo :max kilobyte",
         ];
     }
