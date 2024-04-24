@@ -2,19 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\StoreTypeRequest;
-use App\Http\Requests\UpdateTypeRequest;
-use App\Models\Type;
+use App\Http\Requests\StoreTechnologyRequest;
+use App\Http\Requests\UpdateTechnologyRequest;
+use App\Models\Technology;
 
-class TypeController extends Controller
+class TechnologyController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $types = Type::all();
-        return view('admin.categories.index', compact('types'));
+        //
     }
 
     /**
@@ -28,7 +27,7 @@ class TypeController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreTypeRequest $request)
+    public function store(StoreTechnologyRequest $request)
     {
         //
     }
@@ -36,7 +35,7 @@ class TypeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Type $type)
+    public function show(Technology $technology)
     {
         //
     }
@@ -44,7 +43,7 @@ class TypeController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Type $type)
+    public function edit(Technology $technology)
     {
         //
     }
@@ -52,7 +51,7 @@ class TypeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateTypeRequest $request, Type $type)
+    public function update(UpdateTechnologyRequest $request, Technology $technology)
     {
         //
     }
@@ -60,10 +59,8 @@ class TypeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Type $type)
+    public function destroy(Technology $technology)
     {
-        $type->delete();
-
-        return redirect()->route('admin.categories.index');
+        //
     }
 }
