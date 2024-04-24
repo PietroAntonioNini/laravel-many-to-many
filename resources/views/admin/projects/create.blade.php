@@ -25,16 +25,20 @@
         </div>
 
         <div class="form-group mb-5">
-            <label for="type_id">Tipologia:</label>
-            <select class="form-select" name="type_id" id="type_id">
-            
-                <option value=""></option>
-
-                @foreach ($types as $type)
-                <option value="{{$type->id}}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{ $type->title }}</option>
-                @endforeach
-
-            </select>
+            <label for="type_id">Categoria:</label>
+            <div class="d-flex align-items-baseline">
+                <select class="form-select" name="type_id" id="type_id">
+                
+                    <option value=""></option>
+    
+                    @foreach ($types as $type)
+                    <option value="{{$type->id}}" {{ $type->id == old('type_id') ? 'selected' : '' }}>{{ $type->title }}</option>
+                    @endforeach
+    
+                </select>
+    
+                <a href="{{ route('admin.types.create') }}" class="btn btn-outline-primary ms-4">+</a>
+            </div>
         </div>
 
         <div class="form-group mb-5">
@@ -44,7 +48,7 @@
         </div>
 
         <div class="mt-5 mb-5">
-            <label class="mb-2" for="">Tecnologie usate</label>
+            <label class="mb-2" for="">Tecnologie usate:</label>
 
             <div class="form-group d-flex gap-4 ">
                 @foreach ($technologies as $technology)

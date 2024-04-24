@@ -13,20 +13,6 @@ class TypeSeeder extends Seeder
      */
     public function run(): void
     {
-        $types = [
-            'FRONT-END',
-            'BACK-END',
-            'DATABASE',
-            'FULL-STACK'
-        ];
-
-        foreach ($types as $type) {
-            
-            $newType = new Type();
-
-            $newType->title = $type;
-            
-            $newType->save();
-        }
+        //
     }
 }
